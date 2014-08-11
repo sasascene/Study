@@ -4,26 +4,19 @@ Serial myPort;  // シリアル通信用オブジェクト
 // ================================================================
 
 // OSC ============================================================
-import oscP5.*;
-import netP5.*;
-  
-OscP5 oscP5;
-NetAddress myRemoteLocation;
-
-// 通信オブジェクト(引数にprefixを指定)
-OscMessage myMessage = new OscMessage("/Pd");
+import oscP5.*;	  // OSC通信用のライブラリをインポート
+OscP5 oscP5;  // OSC通信用オブジェクト
 // ================================================================
 
 // 初期設定
 void setup(){
   // シリアル通信用オブジェクトの生成
+  // ポートNoと通信速度を指定する
   myPort = new Serial(this, Serial.list()[2],9600);
   
-  // procressingの受信ポート(pdの送信ポート)
-  oscP5 = new OscP5(this,8000);
-  
-  // procressingの送信ポート(pdの受信ポート)
-  myRemoteLocation = new NetAddress("127.0.0.1",8001);
+  // OSC通信用オブジェクトの生成
+  // procressingの受信ポート(pdの送信ポート)を指定する
+  oscP5 = new OscP5(this, 8000);
 }
 
 // 描画
@@ -31,20 +24,10 @@ void draw(){
   //描画内容は特になし
 }
 
-// シリアル通信01
-void sendSignal01(int val){
-
-//  String str1 = "pinA";
-  String str1 = "11";
-  myPort.write(str1 + str(val) + "\0");
-}
-
-// シリアル通信02
-void sendSignal02(int val){
-
-//  String str1 = "pinB";
-  String str1 = "10";
-  myPort.write(str1 + str(val) + "\0");
+// シリアル通信
+void sendSerial(int pinNo, int val){
+	// pinNoと値を指定してポートに出力
+  myPort.write(str(pinNo) + str(val) + "\0");
 }
 
 // OSC受信イベント
@@ -52,19 +35,24 @@ void oscEvent(OscMessage theOscMessage) {
 
   // prefixの取得
   String prefix = theOscMessage.addrPattern();
-  print(prefix + ": ");
+
+  // ピン番号
+  int pinNo = 0;
+  // 値
+  int val = 0;
   
   if(prefix.equals("/pd/trigger/0")){ // prefixが"/pd/trigger/0"の場合のみ実行
 
-    int val = theOscMessage.get(0).intValue();
-    println(val);
+  	pinNo = 11;
+    val = theOscMessage.get(0).intValue();
 
-    sendSignal01(val);
+    sendSerial(pinNo, val);
 
   }else if(prefix.equals("/pd/trigger/1")){ // prefixが"/pd/trigger/1"の場合のみ実行
-    int val = theOscMessage.get(0).intValue();
-    println(val);
+    
+    pinNo = 10;
+    val = theOscMessage.get(0).intValue();
 
-    sendSignal02(val);
+    sendSerial(pinNo, val);
   }
 }
