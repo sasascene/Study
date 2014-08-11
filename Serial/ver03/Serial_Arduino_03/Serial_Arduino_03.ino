@@ -42,18 +42,13 @@ void receiveString(char *buf)
     if (Serial.available()) {
       c = Serial.read();
       buf[index] = c;
+      index++;
       
       // 文字列の終わりは\0で判断
       if (c == '\0'){
         // 文字列の最後尾を取得した場合はループを抜ける
         break;
       }
-      
-      index++;
     }
   }
-  
-  // 文字列の最後尾を示す記号を追加
-  buf[index] = '\0';
 }
-
