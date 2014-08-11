@@ -1,0 +1,35 @@
+#N canvas 844 180 432 372 10;
+#X declare -lib mrpeach;
+#X obj 215 37 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 246 37 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 4 215 sendOSC;
+#X msg 4 138 connect localhost 8000;
+#X msg 19 164 disconnect;
+#X obj 4 89 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 4 111 sel 1;
+#X text 2 70 connect;
+#X obj 29 190 r sOSC;
+#X obj 215 117 s sOSC;
+#X obj 2 36 import mrpeach;
+#X text 3 255 OSC receive from Processing;
+#X text 0 14 import osc library;
+#X obj 3 322 print;
+#X obj 3 298 unpackOSC;
+#X obj 3 274 udpreceive 8001;
+#X msg 215 65 send /pd/trigger/0 \$1;
+#X msg 246 89 send /pd/trigger/1 \$1;
+#X connect 0 0 16 0;
+#X connect 1 0 17 0;
+#X connect 3 0 2 0;
+#X connect 4 0 2 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
+#X connect 6 1 4 0;
+#X connect 8 0 2 0;
+#X connect 14 0 13 0;
+#X connect 15 0 14 0;
+#X connect 16 0 9 0;
+#X connect 17 0 9 0;
