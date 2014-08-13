@@ -17,6 +17,9 @@ void setup(){
   // OSC通信用オブジェクトの生成
   // procressingの受信ポート(pdの送信ポート)を指定する
   oscP5 = new OscP5(this, 8000);
+
+  size(220, 130);
+  text("translate OSC into Serial message.", 10, height - 30);
 }
 
 // 描画

@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class Serial_Processing_06 extends PApplet {
+public class Serial_Processing_07 extends PApplet {
 
 // \u30b7\u30ea\u30a2\u30eb\u901a\u4fe1  ====================================================
   // \u30b7\u30ea\u30a2\u30eb\u901a\u4fe1\u7528\u306e\u30e9\u30a4\u30d6\u30e9\u30ea\u3092\u30a4\u30f3\u30dd\u30fc\u30c8
@@ -36,6 +36,9 @@ public void setup(){
   // OSC\u901a\u4fe1\u7528\u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u306e\u751f\u6210
   // procressing\u306e\u53d7\u4fe1\u30dd\u30fc\u30c8(pd\u306e\u9001\u4fe1\u30dd\u30fc\u30c8)\u3092\u6307\u5b9a\u3059\u308b
   oscP5 = new OscP5(this, 8000);
+
+  size(220, 130);
+  text("translate OSC into Serial message.", 10, height - 30);
 }
 
 // \u63cf\u753b
@@ -71,7 +74,7 @@ public void oscEvent(OscMessage theOscMessage) {
   }
 }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "Serial_Processing_06" };
+    String[] appletArgs = new String[] { "Serial_Processing_07" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
