@@ -8,7 +8,9 @@ boolean pin[PinNum];
 
 // 初期設定
 void setup() {
-  pinMode(10, OUTPUT);  // 10番ピンを出力に指定
+  pinMode(6, OUTPUT);   //  6番ピンを出力に指定
+  pinMode(7, OUTPUT);   //  7番ピンを出力に指定
+  pinMode(8, OUTPUT);   //  8番ピンを出力に指定
   pinMode(11, OUTPUT);  // 11番ピンを出力に指定
   pinMode(12, OUTPUT);  // 12番ピンを出力に指定
   pinMode(13, OUTPUT);  // 13番ピンを出力に指定
@@ -25,7 +27,7 @@ void setup() {
 void loop(){
   
   // 経過時間チェック
-  checkPin(3000);
+  // checkPin(5000);
   
   // シリアル通信時のみ処理開始
   if(Serial.available()){
