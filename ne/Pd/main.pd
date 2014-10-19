@@ -1,7 +1,0 @@
-#N canvas 265 194 461 206 10;
-#X floatatom -221 149 15 0 0 0 - - -;
-#X obj -221 12 deck;
-#X floatatom -1 149 15 0 0 0 - - -;
-#X obj -1 12 deck;
-#X connect 1 0 0 0;
-#X connect 3 0 2 0;
